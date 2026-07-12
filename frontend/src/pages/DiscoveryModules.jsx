@@ -75,8 +75,7 @@ const formatDisplayDate = (value) => {
   });
 };
 
-const TMDB_BEARER_TOKEN =
-  "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMDcyYzA3YWZhMDBjMWU2NjMyMGQ3MThjYWNlYTRiZCIsIm5iZiI6MTc4MjY2MDI0MC42OTcsInN1YiI6IjZhNDEzYzkwYmNkZTgzNmFkMTQ1ZjBlNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AOABVmAFn-XWGu4cvb-MbfqkW2XnQRl60WsuT1nHZLw";
+const TMDB_BEARER_TOKEN = `Bearer ${import.meta.env.VITE_TMDB_BEARER_TOKEN}`;
 
 const DiscoveryModules = () => {
   const [searchParams] = useSearchParams();
@@ -1143,12 +1142,12 @@ const DiscoveryModules = () => {
           }
         >
           {/* Error / Success */}
-          {formError && (
+          {/* {formError && (
             <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-300 text-xs flex items-start gap-2.5 leading-relaxed">
               <ShieldAlert className="h-4.5 w-4.5 text-red-400 flex-shrink-0 mt-0.5 animate-bounce" />
               <span>{formError}</span>
             </div>
-          )}
+          )} */}
           {formSuccess && (
             <div className="mb-6 p-4 rounded-xl bg-green-500/10 border border-green-500/20 text-green-300 text-xs">
               {formSuccess}
