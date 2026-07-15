@@ -4,10 +4,12 @@ services:
   db:
     image: postgres:16-alpine
     container_name: nexora-db
+    env_file:
+      - .env
     environment:
-      POSTGRES_DB: nexora
-      POSTGRES_USER: nexora
-      POSTGRES_PASSWORD: nexora123
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
     volumes:
@@ -26,13 +28,15 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    env_file:
+      - .env
     environment:
-      DB_URL: jdbc:postgresql://db:5432/nexora
-      DB_USERNAME: nexora
-      DB_PASSWORD: nexora123
-      JWT_SECRET: super-secret-key-change-me
-      MAIL_USERNAME: your-email@gmail.com
-      MAIL_PASSWORD: your-app-password
+      DB_URL: ${DB_URL}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
     ports:
       - "8081:8081"
     volumes:
@@ -47,8 +51,10 @@ services:
       - backend
     ports:
       - "5173:80"
+    env_file:
+      - .env
     environment:
-      VITE_API_TARGET: http://backend:8081
+      VITE_API_TARGET: ${VITE_API_TARGET}
 
 volumes:
   postgres_data:
