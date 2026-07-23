@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
+@CrossOrigin(origins = "http://184.73.14.57:5173/login?tab=signup”)
 @RestController
 @RequestMapping
 public class AuthController {
